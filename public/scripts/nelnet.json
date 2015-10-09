@@ -1,0 +1,27 @@
+[
+	{
+		"principal": 1574.48,
+		"interestRate": 6.55,
+		"monthlyPayment": 28.37
+	},
+	{
+		"principal": 2909.64,
+		"interestRate": 5.75,
+		"monthlyPayment": 53.64
+	},
+	{
+		"principal": 1460.78,
+		"interestRate": 6.55,
+		"monthlyPayment": 26.31
+	},
+	{
+		"principal": 2284.84,
+		"interestRate": 5.75,
+		"monthlyPayment": 41.72
+	},
+	{
+		"principal": 1512.72,
+		"interestRate": 6.55,
+		"monthlyPayment": 27.38
+	}
+]
