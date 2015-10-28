@@ -1,10 +1,3 @@
-function getMaxLengthOfLists(lists) {
-  var maxLength = 0;
-  lists.forEach(function (list) {
-    maxLength = Math.max(Math.ceil(list.length), maxLength); 
-  });
-  return maxLength;
-}
 function extendToLengthWithValue(list, length, value) {
   if (length > list.length) {
     var padding = [];
@@ -17,7 +10,7 @@ function extendToLengthWithValue(list, length, value) {
 
 module.exports = {
   extendListsToLongest: function (lists) {
-    var maxLength = getMaxLengthOfLists(lists);
+    var maxLength = lists.reduce((memo, list) => Math.max(memo, list.length), 0)
     var extendedLists = lists.map(function(list) {
       var lastValue = list[list.length - 1];
       return extendToLengthWithValue(list, maxLength, lastValue);
