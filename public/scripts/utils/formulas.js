@@ -12,24 +12,8 @@ function calculateTotalPaid(interestRate, principal, term) {
   return calculateMonthlyPayment(interestRate, principal, term) * term;
 }
 
-function expandAsAmountPaidByMonth(loan) {
-  var amountByMonth = [];
-  amountByMonth.length = Math.ceil(loan.term);
-  return amountByMonth.fill(undefined)
-    .map(function(_, index) {
-      index++; // needs to be 1-based for mathy stuff
-      var paymentsMade = (loan.term > index) ? index : loan.term;
-      return {
-        monthlyPayment: loan.monthlyPayment,
-        paymentsMade: paymentsMade
-      }
-    })
-    .map(function (paymentsInfo) {
-      return paymentsInfo.paymentsMade * paymentsInfo.monthlyPayment;
-    });
-}
-
 module.exports = {
   calculateTerm,
-  expandAsAmountPaidByMonth
+  calculateMonthlyPayment,
+  calculateTotalPaid
 }

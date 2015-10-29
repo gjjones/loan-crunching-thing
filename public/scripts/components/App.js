@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoanInfo from './LoanInfo';
+import LoansInfo from './LoansInfo';
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
         <h1>Refinance App</h1>
-        <LoanInfo
+        <LoansInfo
           monthsToPaidOff={this.props.monthsToPaidOff}
           totalAmount={this.props.totalAmount}
         />
