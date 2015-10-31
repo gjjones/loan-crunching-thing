@@ -9,6 +9,8 @@ const initialState = {
   monthsToPaidOff: 0
 };
 
+var naiveId = 0;
+
 export default function (state = initialState, action) {
   var loans = state.loans;
   switch(action.type) {
@@ -17,14 +19,14 @@ export default function (state = initialState, action) {
     let term = Formulas.calculateTerm(loan.interestRate,
                                       loan.principal,
                                       loan.monthlyPayment);
-    loans = loans.push({...loan, term});
+    loans = loans.push({...loan, term, id: naiveId++});
     break;
   case ADD_LOANS:
     let filledInLoans = action.loans.map(function (loan) {
       let term = Formulas.calculateTerm(loan.interestRate,
                                         loan.principal,
                                         loan.monthlyPayment);
-      return {...loan, term};
+      return {...loan, term, id: naiveId++};
     });
     loans = loans.concat(filledInLoans);
     break;
