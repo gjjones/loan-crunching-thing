@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import LoanInfo from './LoanInfo';
+import LoanList from './LoanList';
+import LoansSummary from './LoansSummary';
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -7,7 +8,8 @@ class App extends Component {
     return (
       <div>
         <h1>Refinance App</h1>
-        <LoanInfo
+        <LoanList />
+        <LoansSummary
           monthsToPaidOff={this.props.monthsToPaidOff}
           totalAmount={this.props.totalAmount}
         />
@@ -19,7 +21,7 @@ class App extends Component {
 function mapStateToProps (state) {
   return {
     totalAmount: state.totalAmount,
-    monthsToPaidOff: state.monthsToPaidOff
+    monthsToPaidOff: state.monthsToPaidOff,
   }
 }
 
