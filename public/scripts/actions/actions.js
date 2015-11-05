@@ -1,7 +1,8 @@
 export const ADD_LOAN = 'ADD_LOAN';
 export const ADD_LOANS = 'ADD_LOANS';
 export const TOGGLE_CALCULATED_FIELD = 'TOGGLE_CALCULATED_FIELD';
-export const UPDATE_FIXED_VALUE = 'UPDATE_FIXED_VALUE';
+export const UPDATE_MONTHLY_PAYMENT = 'UPDATE_MONTHLY_PAYMENT';
+export const UPDATE_TERM = 'UPDATE_TERM';
 
 export function addLoan(loan) {
   return {
@@ -24,9 +25,17 @@ export function toggleCalculatedField(loanId) {
   };
 }
 
-export function updateFixedValue(loanId, value) {
+export function updateMonthlyPayment(loanId, value) {
   return {
-    type: UPDATE_FIXED_VALUE,
+    type: UPDATE_MONTHLY_PAYMENT,
+    loanId,
+    value,
+  };
+}
+
+export function updateTerm(loanId, value) {
+  return {
+    type: UPDATE_TERM,
     loanId,
     value,
   };

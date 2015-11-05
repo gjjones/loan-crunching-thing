@@ -22,8 +22,8 @@ class App extends Component {
 
 function mapStateToProps (state) {
   return {
-    totalAmount: state.totalAmount,
-    monthsToPaidOff: state.monthsToPaidOff,
+    totalAmount: state.loansSummary.totalAmount,
+    monthsToPaidOff: state.loansSummary.monthsToPaidOff,
   };
 }
 

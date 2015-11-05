@@ -4,7 +4,7 @@ import React, { Component, } from 'react';
 
 class LoanItem extends Component {
   render () {
-    function caculatedOrNotMarkup(id, label, calculated, value, changeHandler) {
+    function caculatedOrNotMarkup(label, calculated, value, changeHandler) {
       if (calculated) {
         return <div>{label} {value}</div>;
       }
@@ -49,25 +49,27 @@ class LoanItem extends Component {
           /> term
         </label>
         {caculatedOrNotMarkup.call(this,
-                                    loan.id,
                                     'loan monthly payment:',
                                     !loan.calculatedTerm,
                                     loan.monthlyPayment,
-                                    this._onUpdateFixedValue.bind(this)
+                                    this._onUpdateMonthlyPayment.bind(this)
                                     )}
         {caculatedOrNotMarkup.call(this,
-                                    loan.id,
                                     'loan term:',
                                     loan.calculatedTerm,
                                     loan.term,
-                                    this._onUpdateFixedValue.bind(this)
+                                    this._onUpdateTerm.bind(this)
                                     )}
       </div>
     );
   }
 
-  _onUpdateFixedValue (event) {
-    this.props.onUpdateFixedValue(this.props.loan.id, event);
+  _onUpdateMonthlyPayment (event) {
+    this.props.onUpdateMonthlyPayment(this.props.loan.id, event);
+  }
+
+  _onUpdateTerm (event) {
+    this.props.onUpdateTerm(this.props.loan.id, event);
   }
 }
 

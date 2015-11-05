@@ -6,17 +6,19 @@ import { connect, } from 'react-redux';
 
 import {
   toggleCalculatedField,
-  updateFixedValue,
+  updateMonthlyPayment,
+  updateTerm,
 } from '../actions/actions';
 
 class LoanList extends Component {
   render () {
-    let loansMarkup = this.props.loans.map(function (loan) {
+    let loansMarkup = this.props.loans.map(function (loan, index) {
       return <LoanItem
-                key={loan.id}
+                key={index}
                 loan={loan}
                 onToggleCalculatedField={this.toggleCalculatedField.bind(this)}
-                onUpdateFixedValue={this.updateFixedValue.bind(this)}
+                onUpdateMonthlyPayment={this.updateMonthlyPayment.bind(this)}
+                onUpdateTerm={this.updateTerm.bind(this)}
               />;
     }.bind(this));
     return (
@@ -31,8 +33,12 @@ class LoanList extends Component {
     this.props.dispatch(toggleCalculatedField(loanId));
   }
 
-  updateFixedValue (loanId, event) {
-    this.props.dispatch(updateFixedValue(loanId, event.target.value));
+  updateMonthlyPayment (loanId, event) {
+    this.props.dispatch(updateMonthlyPayment(loanId, event.target.value));
+  }
+
+  updateTerm (loanId, event) {
+    this.props.dispatch(updateTerm(loanId, event.target.value));
   }
 }
 
