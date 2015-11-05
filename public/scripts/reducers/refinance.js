@@ -25,14 +25,14 @@ export default function (state = initialState, action) {
     let term = Formulas.calculateTerm(loan.interestRate,
                                       loan.principal,
                                       loan.monthlyPayment);
-    loans = loans.push({...loan, term, id: naiveId++, calculatedTerm: true});
+    loans = loans.push({...loan, term, id: naiveId++, calculatedTerm: true,});
     break;
   case ADD_LOANS:
     let filledInLoans = action.loans.map(function (loan) {
       let term = Formulas.calculateTerm(loan.interestRate,
                                         loan.principal,
                                         loan.monthlyPayment);
-      return {...loan, term, id: naiveId++, calculatedTerm: true};
+      return {...loan, term, id: naiveId++, calculatedTerm: true,};
     });
     loans = loans.concat(filledInLoans);
     break;
@@ -40,7 +40,7 @@ export default function (state = initialState, action) {
     updatedIndex = loans.findIndex(loan => loan.id === action.loanId);
     loans = loans.update(
       updatedIndex,
-      loan => ({...loan, calculatedTerm: !loan.calculatedTerm})
+      loan => ({...loan, calculatedTerm: !loan.calculatedTerm,})
     );
     break;
   case UPDATE_FIXED_VALUE:
@@ -53,14 +53,14 @@ export default function (state = initialState, action) {
             Formulas.calculateTerm(loan.interestRate,
                                     loan.principal,
                                     action.value);
-          return {...loan, monthlyPayment: action.value, term}
+          return {...loan, monthlyPayment: action.value, term,};
         }
         else {
           let monthlyPayment =
             Formulas.calculateMonthlyPayment(loan.interestRate,
                                               loan.principal,
                                               action.value);
-          return {...loan, monthlyPayment, term: action.value}
+          return {...loan, monthlyPayment, term: action.value,};
         }
       }
     );
@@ -81,6 +81,6 @@ export default function (state = initialState, action) {
   return {
     loans,
     totalAmount,
-    monthsToPaidOff
+    monthsToPaidOff,
   };
 }

@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+/*eslint-disable no-unused-vars*/
+import React, { Component, } from 'react';
+/*eslint-enable no-unused-vars*/
 
 class LoanItem extends Component {
   render () {
@@ -22,7 +24,7 @@ class LoanItem extends Component {
 
     let loan = this.props.loan;
     return (
-      <div style={{float: 'right', width: '50%'}}>
+      <div style={{float: 'right', width: '50%',}}>
         <h3>I am a loan</h3>
         <div>loan principal: {loan.principal}</div>
         <div>loan interest rate: {loan.interestRate}</div>

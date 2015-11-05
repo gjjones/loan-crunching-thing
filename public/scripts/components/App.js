@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+/*eslint-disable no-unused-vars*/
+import React, { Component, } from 'react';
+/*eslint-enable no-unused-vars*/
 import LoanList from './LoanList';
 import LoansSummary from './LoansSummary';
-import { connect } from 'react-redux';
+import { connect, } from 'react-redux';
 
 class App extends Component {
   render () {
@@ -22,7 +24,7 @@ function mapStateToProps (state) {
   return {
     totalAmount: state.totalAmount,
     monthsToPaidOff: state.monthsToPaidOff,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(App);

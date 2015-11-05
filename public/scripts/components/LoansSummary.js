@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+/*eslint-disable no-unused-vars*/
+import React, { Component, } from 'react';
+/*eslint-enable no-unused-vars*/
 
 class LoanInfo extends Component {
   render () {
