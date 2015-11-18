@@ -6,7 +6,6 @@ import {
   UPDATE_TERM,
 } from '../actions/actions';
 import loansReducer from './loans';
-import Formulas from '../utils/formulas';
 import Immutable from 'immutable';
 
 const initialState = {
@@ -20,13 +19,10 @@ const initialState = {
 function summaryProperties (loans) {
   return {
     monthsToPaidOff: loans.reduce(function (reduction, loan) {
-      return Math.max(reduction, loan.term);
+      return Math.max(reduction, loan.get('term'));
     }, 0),
     totalAmount: loans.reduce(function (reduction, loan) {
-      return reduction +
-              Formulas.calculateTotalPaid(loan.interestRate,
-                                          loan.principal,
-                                          loan.term);
+      return reduction + loan.get('term') * loan.get('monthlyPayment');
     }, 0),
   };
 }

@@ -5,58 +5,52 @@ import {
   UPDATE_MONTHLY_PAYMENT,
   UPDATE_TERM,
 } from '../actions/actions';
-import Formulas from '../utils/formulas';
+import {
+  createLoan,
+  updatePrincipal,
+  updateInterestRate,
+  updateMonthlyPayment,
+  updateTerm,
+} from '../utils/loan';
 import Immutable from 'immutable';
 
 const initialState = Immutable.List();
 
-var naiveId = 0;
 
 export default function (state = initialState, action) {
   var loans = state;
   let updatedIndex;
   switch(action.type) {
   case ADD_LOAN:
-    let loan = action.loan;
-    let term = Formulas.calculateTerm(loan.interestRate,
-                                      loan.principal,
-                                      loan.monthlyPayment);
-    return loans.push({...loan, term, id: naiveId++, calculatedTerm: true,});
+    let loan = createLoan();
+    loan = updatePrincipal(action.loan.principal, loan);
+    loan = updateInterestRate(action.loan.interestRate, loan);
+    loan = updateMonthlyPayment(action.loan.monthlyPayment, loan);
+    return loans.push(loan);
   case ADD_LOANS:
-    let filledInLoans = action.loans.map(function (loan) {
-      let term = Formulas.calculateTerm(loan.interestRate,
-                                        loan.principal,
-                                        loan.monthlyPayment);
-      return {...loan, term, id: naiveId++, calculatedTerm: true,};
+    let filledInLoans = action.loans.map(function (loanData) {
+      var loan = createLoan();
+      loan = updatePrincipal(loanData.principal, loan);
+      loan = updateInterestRate(loanData.interestRate, loan);
+      loan = updateMonthlyPayment(loanData.monthlyPayment, loan);
+      return loan;
     });
     return loans.concat(filledInLoans);
   case TOGGLE_CALCULATED_FIELD:
-    updatedIndex = loans.findIndex(loan => loan.id === action.loanId);
+    updatedIndex = loans.findIndex(loan => loan.get('id') === action.loanId);
     return loans.update(
       updatedIndex,
-      loan => ({...loan, calculatedTerm: !loan.calculatedTerm,})
+      loan => loan.set('calculatedTerm', !loan.get('calculatedTerm'))
     );
   case UPDATE_MONTHLY_PAYMENT:
     return loans.update(
-      loans.findIndex(loan => loan.id === action.loanId),
-      function (loan) {
-        let term =
-          Formulas.calculateTerm(loan.interestRate,
-                                  loan.principal,
-                                  action.value);
-        return {...loan, monthlyPayment: action.value, term,};
-      }
+      loans.findIndex(loan => loan.get('id') === action.loanId),
+      loan => updateMonthlyPayment(action.value, loan)
     );
   case UPDATE_TERM:
     return loans.update(
-      loans.findIndex(loan => loan.id === action.loanId),
-      function (loan) {
-        let monthlyPayment =
-          Formulas.calculateMonthlyPayment(loan.interestRate,
-                                            loan.principal,
-                                            action.value);
-        return {...loan, term: action.value, monthlyPayment,};
-      }
+      loans.findIndex(loan => loan.get('id') === action.loanId),
+      loan => updateTerm(action.value, loan)
     );
   default:
     return state;
