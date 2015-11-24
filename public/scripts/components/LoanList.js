@@ -6,6 +6,8 @@ import { connect, } from 'react-redux';
 
 import {
   toggleCalculatedField,
+  updatePrincipal,
+  updateInterestRate,
   updateMonthlyPayment,
   updateTerm,
 } from '../actions/actions';
@@ -17,6 +19,8 @@ class LoanList extends Component {
                 key={index}
                 loan={loan}
                 onToggleCalculatedField={this.toggleCalculatedField.bind(this)}
+                onUpdatePrincipal={this.updatePrincipal.bind(this)}
+                onUpdateInterestRate={this.updateInterestRate.bind(this)}
                 onUpdateMonthlyPayment={this.updateMonthlyPayment.bind(this)}
                 onUpdateTerm={this.updateTerm.bind(this)}
               />;
@@ -31,6 +35,14 @@ class LoanList extends Component {
 
   toggleCalculatedField (loanId) {
     this.props.dispatch(toggleCalculatedField(loanId));
+  }
+
+  updatePrincipal (loanId, event) {
+    this.props.dispatch(updatePrincipal(loanId, event.target.value));
+  }
+
+  updateInterestRate (loanId, event) {
+    this.props.dispatch(updateInterestRate(loanId, event.target.value));
   }
 
   updateMonthlyPayment (loanId, event) {

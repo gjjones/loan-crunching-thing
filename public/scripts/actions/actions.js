@@ -1,19 +1,35 @@
 export const ADD_LOAN = 'ADD_LOAN';
-export const ADD_LOANS = 'ADD_LOANS';
+export const REMOVE_ALL = 'REMOVE_ALL';
+export const IMPORT_LOAN = 'IMPORT_LOAN';
+export const IMPORT_LOANS = 'IMPORT_LOANS';
 export const TOGGLE_CALCULATED_FIELD = 'TOGGLE_CALCULATED_FIELD';
+export const UPDATE_PRINCIPAL = 'UPDATE_PRINCIPAL';
+export const UPDATE_INTEREST_RATE = 'UPDATE_INTEREST_RATE';
 export const UPDATE_MONTHLY_PAYMENT = 'UPDATE_MONTHLY_PAYMENT';
 export const UPDATE_TERM = 'UPDATE_TERM';
 
-export function addLoan(loan) {
+export function addLoan() {
   return {
     type: ADD_LOAN,
+  };
+}
+
+export function removeAll() {
+  return {
+    type: REMOVE_ALL,
+  };
+}
+
+export function importLoan(loan) {
+  return {
+    type: IMPORT_LOAN,
     loan,
   };
 }
 
-export function addLoans(loans) {
+export function importLoans(loans) {
   return {
-    type: ADD_LOANS,
+    type: IMPORT_LOANS,
     loans,
   };
 }
@@ -22,6 +38,22 @@ export function toggleCalculatedField(loanId) {
   return {
     type: TOGGLE_CALCULATED_FIELD,
     loanId,
+  };
+}
+
+export function updatePrincipal(loanId, value) {
+  return {
+    type: UPDATE_PRINCIPAL,
+    loanId,
+    value,
+  };
+}
+
+export function updateInterestRate(loanId, value) {
+  return {
+    type: UPDATE_INTEREST_RATE,
+    loanId,
+    value,
   };
 }
 

@@ -1,7 +1,11 @@
 import {
   ADD_LOAN,
-  ADD_LOANS,
+  REMOVE_ALL,
+  IMPORT_LOAN,
+  IMPORT_LOANS,
   TOGGLE_CALCULATED_FIELD,
+  UPDATE_PRINCIPAL,
+  UPDATE_INTEREST_RATE,
   UPDATE_MONTHLY_PAYMENT,
   UPDATE_TERM,
 } from '../actions/actions';
@@ -30,8 +34,12 @@ function summaryProperties (loans) {
 export default function (state = initialState, action) {
   switch(action.type) {
   case ADD_LOAN:
-  case ADD_LOANS:
+  case REMOVE_ALL:
+  case IMPORT_LOAN:
+  case IMPORT_LOANS:
   case TOGGLE_CALCULATED_FIELD:
+  case UPDATE_PRINCIPAL:
+  case UPDATE_INTEREST_RATE:
   case UPDATE_MONTHLY_PAYMENT:
   case UPDATE_TERM:
     var loans = loansReducer(state.loans, action);

@@ -1,7 +1,11 @@
 import {
   ADD_LOAN,
-  ADD_LOANS,
+  REMOVE_ALL,
+  IMPORT_LOAN,
+  IMPORT_LOANS,
   TOGGLE_CALCULATED_FIELD,
+  UPDATE_PRINCIPAL,
+  UPDATE_INTEREST_RATE,
   UPDATE_MONTHLY_PAYMENT,
   UPDATE_TERM,
 } from '../actions/actions';
@@ -19,15 +23,21 @@ const initialState = Immutable.List();
 
 export default function (state = initialState, action) {
   var loans = state;
-  let updatedIndex;
+  let updatedIndex,
+    loan;
   switch(action.type) {
   case ADD_LOAN:
-    let loan = createLoan();
+    loan = createLoan();
+    return loans.push(loan);
+  case REMOVE_ALL:
+    return loans.clear();
+  case IMPORT_LOAN:
+    loan = createLoan();
     loan = updatePrincipal(action.loan.principal, loan);
     loan = updateInterestRate(action.loan.interestRate, loan);
     loan = updateMonthlyPayment(action.loan.monthlyPayment, loan);
     return loans.push(loan);
-  case ADD_LOANS:
+  case IMPORT_LOANS:
     let filledInLoans = action.loans.map(function (loanData) {
       var loan = createLoan();
       loan = updatePrincipal(loanData.principal, loan);
@@ -41,6 +51,16 @@ export default function (state = initialState, action) {
     return loans.update(
       updatedIndex,
       loan => loan.set('calculatedTerm', !loan.get('calculatedTerm'))
+    );
+  case UPDATE_PRINCIPAL:
+    return loans.update(
+      loans.findIndex(loan => loan.get('id') === action.loanId),
+      loan => updatePrincipal(action.value, loan)
+    );
+  case UPDATE_INTEREST_RATE:
+    return loans.update(
+      loans.findIndex(loan => loan.get('id') === action.loanId),
+      loan => updateInterestRate(action.value, loan)
     );
   case UPDATE_MONTHLY_PAYMENT:
     return loans.update(

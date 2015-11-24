@@ -24,10 +24,22 @@ class LoanItem extends Component {
 
     let loan = this.props.loan;
     return (
-      <div style={{float: 'right', width: '50%',}}>
+      <div style={{float: 'left', width: '50%',}}>
         <h3>I am a loan</h3>
-        <div>loan principal: {loan.get('principal')}</div>
-        <div>loan interest rate: {loan.get('interestRate')}</div>
+        <div>loan principal:
+          <input
+            type="number"
+            value={loan.get('principal')}
+            onChange={this.handlePrincipalChanged.bind(this)}
+          />
+        </div>
+        <div>loan interest rate:
+          <input
+            type="number"
+            value={loan.get('interestRate')}
+            onChange={this.handleInterestRateChanged.bind(this)}
+          />
+        </div>
         <label>
           <input
             type='radio'
@@ -52,23 +64,31 @@ class LoanItem extends Component {
                                     'loan monthly payment:',
                                     !loan.get('calculatedTerm'),
                                     loan.get('monthlyPayment'),
-                                    this._onUpdateMonthlyPayment.bind(this)
+                                    this.handleMonthlyPaymentChanged.bind(this)
                                     )}
         {caculatedOrNotMarkup.call(this,
                                     'loan term:',
                                     loan.get('calculatedTerm'),
                                     loan.get('term'),
-                                    this._onUpdateTerm.bind(this)
+                                    this.handleTermChanged.bind(this)
                                     )}
       </div>
     );
   }
 
-  _onUpdateMonthlyPayment (event) {
+  handlePrincipalChanged (event) {
+    this.props.onUpdatePrincipal(this.props.loan.get('id'), event);
+  }
+
+  handleInterestRateChanged (event) {
+    this.props.onUpdateInterestRate(this.props.loan.get('id'), event);
+  }
+
+  handleMonthlyPaymentChanged (event) {
     this.props.onUpdateMonthlyPayment(this.props.loan.get('id'), event);
   }
 
-  _onUpdateTerm (event) {
+  handleTermChanged (event) {
     this.props.onUpdateTerm(this.props.loan.get('id'), event);
   }
 }
