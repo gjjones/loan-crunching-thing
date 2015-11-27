@@ -8,7 +8,7 @@ class LoanInfo extends Component {
       monthsUntilPayoff = Math.ceil(this.props.monthsToPaidOff);
 
     return (
-      <div>
+      <div style={{clear: 'both',}}>
         <h2>I am loan summary!</h2>
         <div>{monthsUntilPayoff} months left till paid off</div>
         <div>You will have paid {totalAmountAsCurrency}</div>

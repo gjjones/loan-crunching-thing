@@ -1,7 +1,5 @@
 export const ADD_LOAN = 'ADD_LOAN';
 export const REMOVE_ALL = 'REMOVE_ALL';
-export const IMPORT_LOAN = 'IMPORT_LOAN';
-export const IMPORT_LOANS = 'IMPORT_LOANS';
 export const TOGGLE_CALCULATED_FIELD = 'TOGGLE_CALCULATED_FIELD';
 export const UPDATE_PRINCIPAL = 'UPDATE_PRINCIPAL';
 export const UPDATE_INTEREST_RATE = 'UPDATE_INTEREST_RATE';
@@ -17,20 +15,6 @@ export function addLoan() {
 export function removeAll() {
   return {
     type: REMOVE_ALL,
-  };
-}
-
-export function importLoan(loan) {
-  return {
-    type: IMPORT_LOAN,
-    loan,
-  };
-}
-
-export function importLoans(loans) {
-  return {
-    type: IMPORT_LOANS,
-    loans,
   };
 }
 

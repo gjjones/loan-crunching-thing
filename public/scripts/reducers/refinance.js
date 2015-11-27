@@ -1,8 +1,6 @@
 import {
   ADD_LOAN,
   REMOVE_ALL,
-  IMPORT_LOAN,
-  IMPORT_LOANS,
   TOGGLE_CALCULATED_FIELD,
   UPDATE_PRINCIPAL,
   UPDATE_INTEREST_RATE,
@@ -35,8 +33,6 @@ export default function (state = initialState, action) {
   switch(action.type) {
   case ADD_LOAN:
   case REMOVE_ALL:
-  case IMPORT_LOAN:
-  case IMPORT_LOANS:
   case TOGGLE_CALCULATED_FIELD:
   case UPDATE_PRINCIPAL:
   case UPDATE_INTEREST_RATE:
