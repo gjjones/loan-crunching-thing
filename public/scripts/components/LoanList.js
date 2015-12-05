@@ -14,16 +14,18 @@ import {
 
 class LoanList extends Component {
   render () {
-    let loansMarkup = this.props.loans.map(function (loan, index) {
-      return <LoanItem
-                key={index}
-                loan={loan}
-                onToggleCalculatedField={this.toggleCalculatedField.bind(this)}
-                onUpdatePrincipal={this.updatePrincipal.bind(this)}
-                onUpdateInterestRate={this.updateInterestRate.bind(this)}
-                onUpdateMonthlyPayment={this.updateMonthlyPayment.bind(this)}
-                onUpdateTerm={this.updateTerm.bind(this)}
-              />;
+    let loansMarkup = this.props.loans.map(function (loan) {
+      return (
+        <LoanItem
+          key={loan.get('id')}
+          loan={loan}
+          onToggleCalculatedField={this.toggleCalculatedField.bind(this)}
+          onUpdatePrincipal={this.updatePrincipal.bind(this)}
+          onUpdateInterestRate={this.updateInterestRate.bind(this)}
+          onUpdateMonthlyPayment={this.updateMonthlyPayment.bind(this)}
+          onUpdateTerm={this.updateTerm.bind(this)}
+        />
+      );
     }.bind(this));
     return (
       <div>

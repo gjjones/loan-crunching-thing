@@ -2,76 +2,97 @@
 import React, { Component, } from 'react';
 /*eslint-enable no-unused-vars*/
 
+const NumberField = ({label, value, onChange,}) => {
+  return (
+    <label>
+      {label}
+      {' '}
+      <input
+        type='number'
+        value={value}
+        onChange={onChange}
+      />
+    </label>
+  );
+};
+const RadioField = ({label, checked, onChange,}) => {
+  return (
+    <label>
+      <input
+        type='radio'
+        checked={checked}
+        onChange={onChange}
+      />
+      {' '}
+      {label}
+    </label>
+  );
+};
+
+const EditableNumberLabelField = ({label, value, editing, onChange,}) => {
+  if (!editing) {
+    return <span>{label} {value}</span>;
+  }
+  return (
+    <label>
+      {label}
+      {' '}
+      <input
+        type='number'
+        value={value}
+        onChange={onChange}
+      />
+    </label>
+  );
+};
+
 class LoanItem extends Component {
   render () {
-    function caculatedOrNotMarkup(label, calculated, value, changeHandler) {
-      if (calculated) {
-        return <div>{label} {value}</div>;
-      }
-      else {
-        return <div>
-          <label>
-            {label}
-            <input
-              type='number'
-              value={value}
-              onChange={changeHandler}
-            />
-          </label>
-        </div>;
-      }
-    }
-
-    let loan = this.props.loan;
+    let {loan,} = this.props;
     return (
       <div style={{float: 'left', width: '50%',}}>
         <h3>I am a loan</h3>
-        <div>loan principal:
-          <input
-            type="number"
-            value={loan.get('principal')}
-            onChange={this.handlePrincipalChanged.bind(this)}
-          />
-        </div>
-        <div>loan interest rate:
-          <input
-            type="number"
-            value={loan.get('interestRate')}
-            onChange={this.handleInterestRateChanged.bind(this)}
-          />
-        </div>
-        <label>
-          <input
-            type='radio'
-            name={loan.get('id')}
-            checked={!loan.get('calculatedTerm')}
-            onChange={
-              this.props.onToggleCalculatedField.bind(undefined, loan.get('id'))
-            }
-          /> monthly payment
-        </label>
-        <label>
-          <input
-            type='radio'
-            name={loan.get('id')}
-            checked={loan.get('calculatedTerm')}
-            onChange={
-              this.props.onToggleCalculatedField.bind(undefined, loan.get('id'))
-            }
-          /> term
-        </label>
-        {caculatedOrNotMarkup.call(this,
-                                    'loan monthly payment:',
-                                    !loan.get('calculatedTerm'),
-                                    loan.get('monthlyPayment'),
-                                    this.handleMonthlyPaymentChanged.bind(this)
-                                    )}
-        {caculatedOrNotMarkup.call(this,
-                                    'loan term:',
-                                    loan.get('calculatedTerm'),
-                                    loan.get('term'),
-                                    this.handleTermChanged.bind(this)
-                                    )}
+        <NumberField
+          label='loan principal:'
+          value={loan.get('principal')}
+          onChange={this.handlePrincipalChanged.bind(this)}
+        />
+        <br/>
+        <NumberField
+          label='loan interest rate:'
+          value={loan.get('interestRate')}
+          onChange={this.handleInterestRateChanged.bind(this)}
+        />
+        <br/>
+        <RadioField
+          label='monthly payment'
+          checked={!loan.get('calculatedTerm')}
+          onChange={
+            this.props.onToggleCalculatedField.bind(undefined, loan.get('id'))
+          }
+        />
+        <br/>
+        <RadioField
+          label='term'
+          checked={loan.get('calculatedTerm')}
+          onChange={
+            this.props.onToggleCalculatedField.bind(undefined, loan.get('id'))
+          }
+        />
+        <br/>
+        <EditableNumberLabelField
+          label='loan monthly payment:'
+          value={loan.get('monthlyPayment')}
+          editing={loan.get('calculatedTerm')}
+          onChange={this.handleMonthlyPaymentChanged.bind(this)}
+        />
+        <br/>
+        <EditableNumberLabelField
+          label='loan term:'
+          value={loan.get('term')}
+          editing={!loan.get('calculatedTerm')}
+          onChange={this.handleTermChanged.bind(this)}
+        />
       </div>
     );
   }
