@@ -4,11 +4,9 @@ import {
   calculateTerm,
 } from './formulas';
 
-var naiveId = 0;
-
-function createLoan() {
+function createLoan(id) {
   return Immutable.Map({
-    id: naiveId++,
+    id: id,
     principal: 0,
     interestRate: 0,
     monthlyPayment: 0,

@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
     loan;
   switch(action.type) {
   case ADD_LOAN:
-    loan = createLoan();
+    loan = createLoan(action.id);
     return loans.push(loan);
   case REMOVE_ALL:
     return loans.clear();

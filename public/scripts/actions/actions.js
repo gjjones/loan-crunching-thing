@@ -6,9 +6,12 @@ export const UPDATE_INTEREST_RATE = 'UPDATE_INTEREST_RATE';
 export const UPDATE_MONTHLY_PAYMENT = 'UPDATE_MONTHLY_PAYMENT';
 export const UPDATE_TERM = 'UPDATE_TERM';
 
+var naiveId = 0;
+
 export function addLoan() {
   return {
     type: ADD_LOAN,
+    id: naiveId++,
   };
 }
 
