@@ -12,5 +12,5 @@ function calculateMonthlyPayment(principal, interestRate, term) {
 
 export default {
   calculateTerm,
-  calculateMonthlyPayment,
+  calculateMonthlyPayment
 };

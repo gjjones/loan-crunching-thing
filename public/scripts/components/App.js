@@ -1,11 +1,11 @@
 /*eslint-disable no-unused-vars*/
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 /*eslint-enable no-unused-vars*/
 import LoanList from './LoanList';
 import LoansSummary from './LoansSummary';
-import { connect, } from 'react-redux';
+import { connect } from 'react-redux';
 
-import { addLoan, removeAll, } from '../actions/actions';
+import { addLoan, removeAll } from '../actions/actions';
 
 class App extends Component {
   render () {
@@ -39,7 +39,7 @@ class App extends Component {
 function mapStateToProps (state) {
   return {
     totalAmount: state.loansSummary.totalAmount,
-    monthsToPaidOff: state.loansSummary.monthsToPaidOff,
+    monthsToPaidOff: state.loansSummary.monthsToPaidOff
   };
 }
 

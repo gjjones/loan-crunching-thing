@@ -5,7 +5,7 @@ import {
   UPDATE_PRINCIPAL,
   UPDATE_INTEREST_RATE,
   UPDATE_MONTHLY_PAYMENT,
-  UPDATE_TERM,
+  UPDATE_TERM
 } from '../actions/actions';
 import loansReducer from './loans';
 import Immutable from 'immutable';
@@ -14,8 +14,8 @@ const initialState = {
   loans: Immutable.List(),
   loansSummary: {
     monthsToPaidOff: 0,
-    totalAmount: 0,
-  },
+    totalAmount: 0
+  }
 };
 
 function summaryProperties (loans) {
@@ -25,7 +25,7 @@ function summaryProperties (loans) {
     }, 0),
     totalAmount: loans.reduce(function (reduction, loan) {
       return reduction + loan.get('term') * loan.get('monthlyPayment');
-    }, 0),
+    }, 0)
   };
 }
 
@@ -41,7 +41,7 @@ export default function (state = initialState, action) {
     var loans = loansReducer(state.loans, action);
     return {
       loans,
-      loansSummary: summaryProperties(loans),
+      loansSummary: summaryProperties(loans)
     };
   default:
     return state;

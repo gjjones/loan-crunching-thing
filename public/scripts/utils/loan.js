@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import {
   calculateMonthlyPayment,
-  calculateTerm,
+  calculateTerm
 } from './formulas';
 
 function createLoan(id) {
@@ -11,7 +11,7 @@ function createLoan(id) {
     interestRate: 0,
     monthlyPayment: 0,
     term: 0,
-    calculatedTerm: true,
+    calculatedTerm: true
   });
 }
 
@@ -23,12 +23,12 @@ function updatePrincipal(principal, loan) {
   if (loan.get('calculatedTerm')) {
     monthlyPayment = loan.get('monthlyPayment');
     term = calculateTerm(principal, interestRate, monthlyPayment);
-    loan = loan.merge({principal, term,});
+    loan = loan.merge({principal, term});
   }
   else {
     term = loan.get('term');
     monthlyPayment = calculateMonthlyPayment(principal, interestRate, term);
-    loan = loan.merge({principal, monthlyPayment,});
+    loan = loan.merge({principal, monthlyPayment});
   }
 
   return loan;
@@ -42,12 +42,12 @@ function updateInterestRate(interestRate, loan) {
   if (loan.get('calculatedTerm')) {
     monthlyPayment = loan.get('monthlyPayment');
     term = calculateTerm(principal, interestRate, monthlyPayment);
-    loan = loan.merge({interestRate, term,});
+    loan = loan.merge({interestRate, term});
   }
   else {
     term = loan.get('term');
     monthlyPayment = calculateMonthlyPayment(principal, interestRate, term);
-    loan = loan.merge({interestRate, monthlyPayment,});
+    loan = loan.merge({interestRate, monthlyPayment});
   }
 
   return loan;
@@ -60,7 +60,7 @@ function updateMonthlyPayment(monthlyPayment, loan) {
 
   term = calculateTerm(principal, interestRate, monthlyPayment);
 
-  return loan.merge({monthlyPayment, term,});
+  return loan.merge({monthlyPayment, term});
 }
 
 function updateTerm(term, loan) {
@@ -70,7 +70,7 @@ function updateTerm(term, loan) {
 
   monthlyPayment = calculateMonthlyPayment(principal, interestRate, term);
 
-  return loan.merge({monthlyPayment, term,});
+  return loan.merge({monthlyPayment, term});
 }
 
 export default {
@@ -78,5 +78,5 @@ export default {
   updatePrincipal,
   updateInterestRate,
   updateMonthlyPayment,
-  updateTerm,
+  updateTerm
 };

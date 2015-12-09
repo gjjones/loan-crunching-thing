@@ -1,8 +1,8 @@
 /*eslint-disable no-unused-vars*/
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 /*eslint-enable no-unused-vars*/
 
-const NumberField = ({label, value, onChange,}) => {
+const NumberField = ({label, value, onChange}) => {
   return (
     <label>
       {label}
@@ -15,7 +15,7 @@ const NumberField = ({label, value, onChange,}) => {
     </label>
   );
 };
-const RadioField = ({label, checked, onChange,}) => {
+const RadioField = ({label, checked, onChange}) => {
   return (
     <label>
       <input
@@ -29,7 +29,7 @@ const RadioField = ({label, checked, onChange,}) => {
   );
 };
 
-const EditableNumberLabelField = ({label, value, editing, onChange,}) => {
+const EditableNumberLabelField = ({label, value, editing, onChange}) => {
   if (!editing) {
     return <span>{label} {value}</span>;
   }
@@ -48,9 +48,9 @@ const EditableNumberLabelField = ({label, value, editing, onChange,}) => {
 
 class LoanItem extends Component {
   render () {
-    let {loan,} = this.props;
+    let { loan } = this.props;
     return (
-      <div style={{float: 'left', width: '50%',}}>
+      <div style={{float: 'left', width: '50%'}}>
         <h3>I am a loan</h3>
         <NumberField
           label='loan principal:'

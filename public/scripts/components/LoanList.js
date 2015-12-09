@@ -1,15 +1,15 @@
 /*eslint-disable no-unused-vars*/
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 /*eslint-enable no-unused-vars*/
 import LoanItem from './LoanItem';
-import { connect, } from 'react-redux';
+import { connect } from 'react-redux';
 
 import {
   toggleCalculatedField,
   updatePrincipal,
   updateInterestRate,
   updateMonthlyPayment,
-  updateTerm,
+  updateTerm
 } from '../actions/actions';
 
 class LoanList extends Component {
@@ -58,7 +58,7 @@ class LoanList extends Component {
 
 function mapStateToProps (state) {
   return {
-    loans: state.loans,
+    loans: state.loans
   };
 }
 

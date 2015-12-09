@@ -5,14 +5,14 @@ import {
   UPDATE_PRINCIPAL,
   UPDATE_INTEREST_RATE,
   UPDATE_MONTHLY_PAYMENT,
-  UPDATE_TERM,
+  UPDATE_TERM
 } from '../actions/actions';
 import {
   createLoan,
   updatePrincipal,
   updateInterestRate,
   updateMonthlyPayment,
-  updateTerm,
+  updateTerm
 } from '../utils/loan';
 import Immutable from 'immutable';
 

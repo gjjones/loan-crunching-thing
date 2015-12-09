@@ -8,14 +8,6 @@
       2,
       "single"
     ],
-    "semi": [
-      2,
-      "always"
-    ],
-    "comma-dangle": [
-      2,
-      "always"
-    ],
     "max-len": [
       1,
       80,
